@@ -5,7 +5,7 @@ pipeline {
         PATH = "/opt/homebrew/opt/node@20/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
         DOCKER_IMAGE = "priprav1ch228/my-app:latest"
         DOCKER_CREDENTIALS_ID = "docker-hub-credentials"
-        NOTIFICATION_EMAIL = "твой_email@gmail.com"
+        NOTIFICATION_EMAIL = "adventchiken@gmail.com"
     }
 
     stages {
