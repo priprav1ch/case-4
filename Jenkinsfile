@@ -13,6 +13,19 @@ pipeline {
             }
         }
 
+        stage('Lint') {
+            steps {
+                sh 'npm install'
+                sh 'npm run lint'
+            }
+        }
+
+        stage('Unit Tests') {
+            steps {
+                sh 'npm test'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -29,6 +42,12 @@ pipeline {
                         sh "docker push ${DOCKER_IMAGE}"
                     }
                 }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Развертывание (эмуляция) успешно завершено!"
             }
         }
     }
