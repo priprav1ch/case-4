@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        PATH = "/opt/homebrew/opt/node@20/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
         DOCKER_IMAGE = "priprav1ch228/my-app:latest"
         DOCKER_CREDENTIALS_ID = "docker-hub-credentials"
     }
