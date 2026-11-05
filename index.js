@@ -1,1 +1,9 @@
-console.log("Hello from case-4!");
+function sum(a, b) {
+  return a + b;
+}
+
+module.exports = { sum };
+
+if (require.main === module) {
+  console.log("App is running!");
+}
