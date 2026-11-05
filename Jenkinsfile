@@ -5,6 +5,7 @@ pipeline {
         PATH = "/opt/homebrew/opt/node@20/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
         DOCKER_IMAGE = "priprav1ch228/my-app:latest"
         DOCKER_CREDENTIALS_ID = "docker-hub-credentials"
+        NOTIFICATION_EMAIL = "твой_email@gmail.com"
     }
 
     stages {
@@ -50,6 +51,23 @@ pipeline {
             steps {
                 echo "Развертывание (эмуляция) успешно завершено!"
             }
+        }
+    }
+
+    post {
+        success {
+            mail (
+                to: env.NOTIFICATION_EMAIL,
+                subject: "✅ Jenkins: ${env.JOB_NAME} #${env.BUILD_NUMBER} - SUCCESS",
+                body: "Сборка завершилась успешно.\nДетали: ${env.BUILD_URL}"
+            )
+        }
+        failure {
+            mail (
+                to: env.NOTIFICATION_EMAIL,
+                subject: "❌ Jenkins: ${env.JOB_NAME} #${env.BUILD_NUMBER} - FAILED",
+                body: "Сборка упала с ошибкой.\nПроверь консоль: ${env.BUILD_URL}console"
+            )
         }
     }
 }
